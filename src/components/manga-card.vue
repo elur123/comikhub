@@ -37,7 +37,6 @@
             v-for="(chapter, index) in props.manga.new_chapters"
             :key="index"
             class="bg-gray-100 rounded-lg"
-            @click="stop"
           >
             <p class="p-2 text-[8px] font-semibold">{{ chapter.chapter }}</p>
           </div>
@@ -49,7 +48,6 @@
 
 <script setup lang="ts">
 import { type Manga } from '@/types'
-import { stop } from 'vue'
 
 interface componentProps {
   manga: Manga

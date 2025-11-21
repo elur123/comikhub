@@ -44,7 +44,10 @@ import router from '@/router'
 import DefaultLayout from '@/layouts/default-layout.vue'
 
 const route = useRoute()
-const slug = route.params?.manga ?? ''
+const slug = (() => {
+  const val = route.params.manga
+  return Array.isArray(val) ? val[0] : val
+})() as string // assert string
 
 const mangaDetailsStore = useMangaDetailsStore()
 const { mangaDetails } = storeToRefs(mangaDetailsStore)

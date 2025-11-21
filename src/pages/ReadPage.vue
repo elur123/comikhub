@@ -18,7 +18,14 @@ import { useMangaDetailsStore } from '@/stores/manga-details'
 import { storeToRefs } from 'pinia'
 
 const route = useRoute()
-const { manga, chapter } = route.params
+const manga = (() => {
+  const val = route.params.manga
+  return Array.isArray(val) ? val[0] : val
+})() as string // assert string
+const chapter = (() => {
+  const val = route.params.chapter
+  return Array.isArray(val) ? val[0] : val
+})() as string // assert string
 
 const mangaDetailsStore = useMangaDetailsStore()
 const { imageEpisodes } = storeToRefs(mangaDetailsStore)
